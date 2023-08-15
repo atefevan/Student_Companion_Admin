@@ -6,7 +6,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firestore";
-import C_Button from "../../components/C_Button";
+import C_Button from "../../components/atoms/C_Button";
 import { enqueueSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 import { IAuthdata } from "../../Utils/varificaiton";

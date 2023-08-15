@@ -2,7 +2,9 @@ import { Button, SxProps, Theme, Typography } from "@mui/material";
 
 interface BtnProps {
   label: string;
+  btn_text_size?: string;
   cornerRadius?: number;
+  btn_text_color?: string;
   color?: string;
   width?: string;
   height?: string;
@@ -10,6 +12,14 @@ interface BtnProps {
   size: "small" | "medium" | "large";
   marginLeft?: number;
   marginRight?: number;
+  btn_color?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning";
   marginTop?: number;
   marginBottom?: number;
   startIcon?: React.ReactNode;
@@ -22,6 +32,9 @@ interface BtnProps {
 const C_Button = ({
   label,
   variant,
+  btn_text_size,
+  btn_text_color,
+  btn_color,
   size,
   onSubmit,
   width,
@@ -51,6 +64,7 @@ const C_Button = ({
           mb: marginBottom,
           ...style,
         }}
+        color={btn_color}
         variant={variant}
         size={size}
         startIcon={startIcon}
@@ -59,7 +73,15 @@ const C_Button = ({
       >
         <Typography
           fontFamily={["Arial"]}
-          sx={{ typography: { sm: "caption", xs: "caption", p: 2 } }}
+          sx={{
+            typography: {
+              sm: "caption",
+              xs: "caption",
+              p: 2,
+              color: { btn_text_color },
+              fontSize: { btn_text_size },
+            },
+          }}
         >
           {label}
         </Typography>
