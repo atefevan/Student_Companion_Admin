@@ -14,9 +14,11 @@ const Dashboard = () => {
   const [classNumbers, setClassNumbers] = useState();
   const [loading, setLoading] = useState<boolean>(false);
 
+  /// UI Components ...
   const [deptVisibility, setDeptVisibility] = useState<boolean>(false);
   const [newDept, setNewDept] = useState<string>(""); /// caller
   const [depts, setDepts] = useState<string[]>(["CSE", "EEE"]);
+  const [clearText, setClearText] = useState<boolean>(true);
 
   /// Loader Hook
   useEffect(() => {
@@ -97,7 +99,7 @@ const Dashboard = () => {
                 variant="contained"
                 size="large"
                 onSubmit={() => {
-                  setDeptVisibility(!deptVisibility);
+                  setDeptVisibility(true);
                 }}
               />
             </Box>
@@ -106,7 +108,7 @@ const Dashboard = () => {
             sx={{
               bgcolor: "orange",
               height: "40%",
-              width: "30%",
+              width: "20%",
               border: 3,
               borderColor: "black",
               borderRadius: 4,
@@ -119,7 +121,8 @@ const Dashboard = () => {
               sx={{
                 height: "80%",
                 display: "flex",
-                width: "70%",
+                width: "90%",
+                alignSelf: "center",
                 flexDirection: "row",
                 justifyContent: "left",
                 ml: 2,
@@ -129,22 +132,48 @@ const Dashboard = () => {
               <C_TextField
                 label="Add Department"
                 id="add-dept"
+                value={clearText === true ? newDept : ""}
                 type="outlined"
                 isError={false}
-                fieldOnChange={(event) => setNewDept(event)}
-              />
-            </Box>
-            <Box sx={{ alignSelf: "center", mb: 3 }}>
-              <C_Button
-                label="Add"
-                variant="contained"
-                size="medium"
-                btn_color="warning"
-                onSubmit={() => {
-                  setDepts([...depts, newDept]);
-                  setDeptVisibility(!deptVisibility);
+                fieldOnChange={(event) => {
+                  setNewDept(event);
+                  setClearText(true);
                 }}
               />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "60%",
+              }}
+            >
+              <Box sx={{ alignSelf: "left", mb: 3, ml: 3 }}>
+                <C_Button
+                  width="70%"
+                  label="Add"
+                  variant="contained"
+                  size="medium"
+                  btn_color="warning"
+                  onSubmit={() => {
+                    setDepts([...depts, newDept]);
+                    setClearText(false);
+                  }}
+                />
+              </Box>
+              <Box sx={{ alignSelf: "left", mb: 3, ml: 3 }}>
+                <C_Button
+                  width="70%"
+                  label="X"
+                  variant="contained"
+                  size="large"
+                  btn_color="warning"
+                  onSubmit={() => {
+                    setDeptVisibility(false);
+                  }}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>
