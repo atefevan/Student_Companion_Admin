@@ -3,7 +3,7 @@ import C_Button from "./atoms/C_Button";
 interface Props {
   leading: string;
 }
-const Plates = ({ leading }: Props) => {
+const ViewPlates = ({ leading }: Props) => {
   return (
     <Box
       sx={{
@@ -59,4 +59,4 @@ const Plates = ({ leading }: Props) => {
   );
 };
 
-export default Plates;
+export default ViewPlates;
