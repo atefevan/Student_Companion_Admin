@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../src/config/firestore";
+import { db } from "../config/firestore";
 import { rotues } from "../constants/appStrings";
 
 export const getDatas = async () => {

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getBatches, getDatas } from "../../Utils/firebaseFunctions";
+import { getBatches, getDatas } from "../../firebase/ReadFunctions";
 import C_Button from "../../components/atoms/C_Button";
 import ViewPlates from "../../components/ViewPlates";
 import C_TextField from "../../components/atoms/C_Textfield";
@@ -92,6 +92,7 @@ const Departments = () => {
             {depts.map((e) => (
               <ViewPlates leading={e} />
             ))}
+
             <Box sx={{ alignSelf: "center", mb: 1 }}>
               <C_Button
                 label="Add Department"
