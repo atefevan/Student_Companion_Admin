@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getBatches, getDatas } from "../../firebase/ReadFunctions";
 import C_Button from "../../components/atoms/C_Button";
 import ViewPlates from "../../components/ViewPlates";
-import C_TextField from "../../components/atoms/C_Textfield";
+import C_TextField from "../../components/atoms/C_TextField";
 
 const Departments = () => {
   /// DB Branches
@@ -155,7 +155,7 @@ const Departments = () => {
                   label="Add"
                   variant="contained"
                   size="medium"
-                  btn_color="warning"
+                  btn_color="success"
                   onSubmit={() => {
                     if (newDept.length !== 0) {
                       setDepts([...depts, newDept]);
@@ -172,7 +172,7 @@ const Departments = () => {
                   label="X"
                   variant="contained"
                   size="large"
-                  btn_color="warning"
+                  btn_color="error"
                   onSubmit={() => {
                     setDeptVisibility(false);
                   }}

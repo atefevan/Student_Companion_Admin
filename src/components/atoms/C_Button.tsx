@@ -11,7 +11,7 @@ interface BtnProps {
   variant: "text" | "contained" | "outlined";
   size: "small" | "medium" | "large";
   marginLeft?: number | string;
-  marginRight?: number;
+  marginRight?: number | string;
   btn_color?:
     | "inherit"
     | "primary"
@@ -23,6 +23,7 @@ interface BtnProps {
   selfAlign?: string;
   marginTop?: number;
   marginBottom?: number | string;
+  margin?: string | number;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   style?: SxProps<Theme>;
@@ -47,6 +48,7 @@ const C_Button = ({
   marginTop,
   marginBottom,
   selfAlign,
+  margin,
   style,
   startIcon,
   endIcon,
@@ -65,6 +67,7 @@ const C_Button = ({
           mt: marginTop,
           mb: marginBottom,
           alignSelf: selfAlign,
+          m: margin,
           ...style,
         }}
         color={btn_color}

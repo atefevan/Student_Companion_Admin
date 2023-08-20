@@ -68,25 +68,48 @@ const Info = ({ batch, section }: Props) => {
             {classes.map((classes: any) => classes)}
           </Box>
         </div>
-        <C_Button
-          label="Add"
-          variant="contained"
-          size="medium"
-          selfAlign="end"
-          marginLeft={"40vw"}
-          marginBottom={"2vh"}
-          onSubmit={() => handleAddClass(<ClasswisePlates />)}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <C_Button
+            label="Add"
+            variant="contained"
+            btn_color="success"
+            size="medium"
+            margin={2}
+            selfAlign="end"
+            onSubmit={() => handleAddClass(<ClasswisePlates />)}
+          />
+          <C_Button
+            label="Remove"
+            variant="contained"
+            size="medium"
+            selfAlign="end"
+            btn_color="error"
+            margin={2}
+            onSubmit={() => handleRemoveClass(classes[classes.length - 1])}
+          />
+          <C_Button
+            label="Save"
+            variant="contained"
+            size="medium"
+            selfAlign="end"
+            btn_color="secondary"
+            margin={2}
+            onSubmit={() => console.log("Saved Clicked")}
+          />
+        </div>
+
+        <Box
+          sx={{
+            border: 2,
+            borderWidth: 1,
+            borderColor: "black",
+          }}
         />
-        <C_Button
-          label="Remove"
-          variant="contained"
-          size="medium"
-          selfAlign="end"
-          marginLeft={"40vw"}
-          marginBottom={"2vh"}
-          onSubmit={() => handleRemoveClass(classes[classes.length - 1])}
-        />
-        <Box sx={{ border: 2, borderWidth: 1, borderColor: "black" }} />
       </Box>
     </>
   );
