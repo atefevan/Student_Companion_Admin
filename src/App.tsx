@@ -1,5 +1,4 @@
 import { SnackbarProvider } from "notistack";
-import Login from "./pages/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
 

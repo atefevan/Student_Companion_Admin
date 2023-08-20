@@ -11,11 +11,12 @@ import { useState } from "react";
 interface Props {
   prefixIcon?: any;
   prefixText?: string;
+  icon_color?: string;
   suffixIcon?: React.ReactNode;
   suffixText?: string;
   height?: string;
   width?: string;
-  label: string;
+  label?: string;
   id: string;
   placeHolder?: string;
   type: string;
@@ -27,6 +28,17 @@ interface Props {
   value?: string;
   variant?: "standard" | "outlined" | "filled";
   style?: SxProps<Theme>;
+  font?: string;
+  borderColor?:
+    | "error"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning";
+  textColor?: string;
+  hiddenLabel?: boolean;
+  focused?: boolean;
   fieldOnChange: (value: string) => void;
 }
 
@@ -45,8 +57,12 @@ const C_TextField = ({
   suffixText,
   placeHolder,
   style,
+  textColor,
+  focused,
+  borderColor,
   fieldOnChange,
   fullwidth,
+  hiddenLabel,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(true);
   const handleShowPassword = () => {
@@ -56,6 +72,8 @@ const C_TextField = ({
     <>
       <TextField
         fullWidth={fullwidth}
+        hiddenLabel={hiddenLabel}
+        focused={focused}
         sx={{
           mb: 5,
           ...style,
@@ -66,6 +84,7 @@ const C_TextField = ({
               {prefixText ? prefixText : prefixIcon ? prefixIcon : null}
             </InputAdornment>
           ),
+
           endAdornment: (
             <InputAdornment position="end">
               {suffixText ? suffixText : null}
@@ -84,6 +103,9 @@ const C_TextField = ({
               </IconButton>
             </InputAdornment>
           ),
+          style: {
+            color: textColor,
+          },
         }}
         id={id}
         label={label}
@@ -92,6 +114,7 @@ const C_TextField = ({
         placeholder={placeHolder}
         disabled={_disabled}
         error={isError}
+        color={borderColor}
         variant={variant}
         required={required ? required : false}
         onChange={(e) => {

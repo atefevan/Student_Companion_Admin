@@ -10,7 +10,7 @@ interface BtnProps {
   height?: string;
   variant: "text" | "contained" | "outlined";
   size: "small" | "medium" | "large";
-  marginLeft?: number;
+  marginLeft?: number | string;
   marginRight?: number;
   btn_color?:
     | "inherit"
@@ -20,8 +20,9 @@ interface BtnProps {
     | "error"
     | "info"
     | "warning";
+  selfAlign?: string;
   marginTop?: number;
-  marginBottom?: number;
+  marginBottom?: number | string;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   style?: SxProps<Theme>;
@@ -45,6 +46,7 @@ const C_Button = ({
   marginRight,
   marginTop,
   marginBottom,
+  selfAlign,
   style,
   startIcon,
   endIcon,
@@ -62,6 +64,7 @@ const C_Button = ({
           mr: marginRight,
           mt: marginTop,
           mb: marginBottom,
+          alignSelf: selfAlign,
           ...style,
         }}
         color={btn_color}

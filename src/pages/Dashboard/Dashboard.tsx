@@ -6,16 +6,17 @@ import Batches from "../Batches/Batches";
 const Dashboard = () => {
   const dept = "CSE";
   const batches = ["55", "51", "52", "53"];
+  const sections = ["A", "B", "C"];
+  // const batch_sections = [55:{},]
   return (
     <>
       <Departments />
-      <Batches />
       <Box>
-        <Typography variant="body1" fontWeight={600} sx={{ m: 4 }}>
+        <Typography variant="h4" fontWeight={600} sx={{ m: 4 }}>
           Department ➨ {dept}
         </Typography>
-        {batches.map((e) => (
-          <Info batch={e} />
+        {batches.map((batch) => (
+          <Info batch={batch} section="A" />
         ))}
       </Box>
     </>

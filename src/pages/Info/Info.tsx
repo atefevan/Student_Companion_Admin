@@ -1,18 +1,30 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import ClasswisePlates from "../../components/ClasswisePlates";
+import C_Button from "../../components/atoms/C_Button";
 interface Props {
   batch: string;
+  section: string;
 }
 
-const Info = ({ batch }: Props) => {
-  const cse_55 = "55A";
-  const date = useState<Date>();
-  const c_start = useState();
-  const c_end = useState();
-  const c_subject = useState();
-  const c_code = useState();
-  const c_room = useState();
-  const c_teacher_initial = useState();
+const Info = ({ batch, section }: Props) => {
+  // const date = useState<Date>();
+  // const c_start = useState();
+  // const c_end = useState();
+  // const c_subject = useState();
+  // const c_code = useState();
+  // const c_room = useState();
+  // const c_teacher_initial = useState();
+  const [classes, setClasses] = useState<any>([
+    <ClasswisePlates />,
+    <ClasswisePlates />,
+  ]);
+  const handleAddClass = (newClass: any) => {
+    setClasses([...classes, newClass]);
+  };
+  const handleRemoveClass = (removeClass: any) => {
+    setClasses(classes.filter((i: any) => i != removeClass));
+  };
   return (
     <>
       <Box
@@ -21,8 +33,9 @@ const Info = ({ batch }: Props) => {
           right: 0,
           top: 0,
           bottom: 0,
-          height: "50vh",
-          mt: 10,
+          height: "59vh",
+          alignSelf: "end",
+          mt: 20,
         }}
       >
         <div style={{ display: "flex" }}>
@@ -32,7 +45,7 @@ const Info = ({ batch }: Props) => {
               fontWeight={300}
               sx={{ mr: 4, ml: 4, mt: 20 }}
             >
-              {batch}
+              {batch} {section}
             </Typography>
           </Box>
           <Box
@@ -47,97 +60,32 @@ const Info = ({ batch }: Props) => {
             sx={{
               height: "55%",
               display: "flex",
-              width:"100vw",
-              flex:1,
+              width: "100vw",
+              flex: 1,
               m: 1,
             }}
           >
-            <div
-              style={{
-                justifyContent: "space-between",
-                display: "flex",
-                flexDirection: "column",
-                margin: 1,
-              }}
-            >
-              <input type="date" style={{ margin: 3 }} name="date" />
-
-              <TextField type="text" sx={{ m: 1 }} label={"class start"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class end"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class subject"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class code"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class room"} />
-              <TextField
-                type="text"
-                sx={{ m: 1 }}
-                label={"class teacher initial"}
-              />
-            </div>
-            <div
-              style={{
-                justifyContent: "space-between",
-                display: "flex",
-                flexDirection: "column",
-                margin: 1,
-              }}
-            >
-              <input type="date" style={{ margin: 3 }} name="date" />
-
-              <TextField type="text" sx={{ m: 1 }} label={"class start"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class end"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class subject"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class code"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class room"} />
-              <TextField
-                type="text"
-                sx={{ m: 1 }}
-                label={"class teacher initial"}
-              />
-            </div>
-            <div
-              style={{
-                justifyContent: "space-between",
-                display: "flex",
-                flexDirection: "column",
-                margin: 1,
-              }}
-            >
-              <input type="date" style={{ margin: 3 }} name="date" />
-
-              <TextField type="text" sx={{ m: 1 }} label={"class start"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class end"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class subject"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class code"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class room"} />
-              <TextField
-                type="text"
-                sx={{ m: 1 }}
-                label={"class teacher initial"}
-              />
-            </div>
-            <div
-              style={{
-                justifyContent: "space-between",
-                display: "flex",
-                flexDirection: "column",
-                margin: 1,
-              }}
-            >
-              <input type="date" style={{ margin: 3 }} name="date" />
-
-              <TextField type="text" sx={{ m: 1 }} label={"class start"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class end"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class subject"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class code"} />
-              <TextField type="text" sx={{ m: 1 }} label={"class room"} />
-              <TextField
-                type="text"
-                sx={{ m: 1 }}
-                label={"class teacher initial"}
-              />
-            </div>
+            {classes.map((classes: any) => classes)}
           </Box>
         </div>
+        <C_Button
+          label="Add"
+          variant="contained"
+          size="medium"
+          selfAlign="end"
+          marginLeft={"40vw"}
+          marginBottom={"2vh"}
+          onSubmit={() => handleAddClass(<ClasswisePlates />)}
+        />
+        <C_Button
+          label="Remove"
+          variant="contained"
+          size="medium"
+          selfAlign="end"
+          marginLeft={"40vw"}
+          marginBottom={"2vh"}
+          onSubmit={() => handleRemoveClass(classes[classes.length - 1])}
+        />
         <Box sx={{ border: 2, borderWidth: 1, borderColor: "black" }} />
       </Box>
     </>
