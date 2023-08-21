@@ -40,6 +40,7 @@ interface Props {
   hiddenLabel?: boolean;
   focused?: boolean;
   fieldOnChange: (value: string) => void;
+  onChange?: any;
 }
 
 const C_TextField = ({
@@ -63,6 +64,7 @@ const C_TextField = ({
   fieldOnChange,
   fullwidth,
   hiddenLabel,
+  onChange,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(true);
   const handleShowPassword = () => {
@@ -117,10 +119,11 @@ const C_TextField = ({
         color={borderColor}
         variant={variant}
         required={required ? required : false}
-        onChange={(e) => {
-          e.preventDefault();
-          fieldOnChange(e.target.value);
-        }}
+        // onChange={(e) => {
+        //   e.preventDefault();
+        //   fieldOnChange(e.target.value);
+        // }}
+        onChange={onChange}
         helperText={isError ? helperText : null}
       />
     </>

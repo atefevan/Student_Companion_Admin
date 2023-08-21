@@ -4,13 +4,28 @@ import C_TextField from "./atoms/C_TextField";
 interface Props {}
 
 const ClasswisePlates = ({}: Props) => {
-  const date = useState();
-  const c_start = useState<string>();
-  const c_end = useState<string>();
-  const c_subject = useState<string>();
-  const c_code = useState<string>();
-  const c_room = useState<string>();
-  const c_teacher_initial = useState<string>();
+  // const date = useState();
+  // const c_start = useState<string>();
+  // const c_end = useState<string>();
+  // const c_subject = useState<string>();
+  // const c_code = useState<string>();
+  // const c_room = useState<string>();
+  // const c_teacher_initial = useState<string>();
+
+  const [formData, setFormData] = useState<{}>();
+
+  const handleFormDataInput = (e: any) => {
+    e.preventDefault();
+
+    let obj = {};
+    const key: string = e?.target?.id;
+
+    obj[key] = e?.target?.value;
+    setFormData({ ...formData, ...obj });
+  };
+
+  //console.log(formData);
+
   return (
     <>
       <div
@@ -24,52 +39,52 @@ const ClasswisePlates = ({}: Props) => {
         <input type="date" style={{ margin: 5 }} name="date" />
 
         <C_TextField
-          id="outlined-basic"
+          id="classStart"
           type="text"
           label="class start"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
         <C_TextField
-          id="outlined-basic"
+          id="classEnd"
           type="text"
           label="class end"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
         <C_TextField
-          id="outlined-basic"
+          id="subject"
           type="text"
           label="class subject"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
         <C_TextField
-          id="outlined-basic"
+          id="classCode"
           type="text"
           label="class code"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
         <C_TextField
-          id="outlined-basic"
+          id="classRoom"
           type="text"
           label="class room"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
         <C_TextField
-          id="outlined-basic"
+          id="teacherInitial"
           type="text"
           label="class teacher initial"
           isError={false}
           style={{ margin: 1 }}
-          fieldOnChange={() => {}}
+          onChange={handleFormDataInput}
         />
       </div>
     </>
