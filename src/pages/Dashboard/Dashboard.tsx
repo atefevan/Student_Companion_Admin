@@ -24,3 +24,44 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+// const data = {
+//   '0':[
+//     'cse':[
+//       'batch':[
+//         '55':[
+//           'sec':[
+//             'A':[
+//               'class_date':'',
+//               'class_start':'',
+//               'class_end':'',
+//               'class_subject':'',
+//               'class_code':'',
+//               'class_room':'',
+//               'teacher_initial':'',
+//             ],
+//           ],
+//         ],
+//       ],
+//     ],
+//   ],
+//   '1':[
+//    'eee':[
+//      'batch':[
+//         '55':[
+//           'sec':[
+//             'A':[
+//               'class_date':'',
+//               'class_start':'',
+//               'class_end':'',
+//               'class_subject':'',
+//               'class_code':'',
+//               'class_room':'',
+//               'teacher_initial':'',
+//             ],
+//           ],
+//         ],
+//       ],
+//     ],
+//   ],
+// };

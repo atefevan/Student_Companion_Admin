@@ -1,7 +1,16 @@
-import C_TextField from "../../src/components/atoms/C_TextField";
+import { useState } from "react";
+import C_TextField from "./atoms/C_TextField";
+
 interface Props {}
 
 const ClasswisePlates = ({}: Props) => {
+  const date = useState();
+  const c_start = useState<string>();
+  const c_end = useState<string>();
+  const c_subject = useState<string>();
+  const c_code = useState<string>();
+  const c_room = useState<string>();
+  const c_teacher_initial = useState<string>();
   return (
     <>
       <div

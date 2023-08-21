@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getBatches, getDatas } from "../../firebase/ReadFunctions";
 import C_Button from "../../components/atoms/C_Button";
 import ViewPlates from "../../components/ViewPlates";
-import C_TextField from "../../components/atoms/C_Textfield";
+import C_TextField from "../../components/atoms/C_TextField";
 
 const Batches = () => {
   /// DB Branches
@@ -71,7 +71,7 @@ const Batches = () => {
             }}
           >
             <Typography variant="h4" sx={{ m: 3 }}>
-            50 ➨ Batches
+              50 ➨ Batches
             </Typography>
             {batches.map((e) => (
               <ViewPlates leading={e} />

@@ -9,9 +9,9 @@ const Departments = () => {
   /// DB Branches
   const [departments, setDepartments] = useState<any[]>([]);
   const [batches, setBatches] = useState<any[]>([]);
-  const [sections, setSections] = useState<any[]>([]);
-  const [classDates, setClassDates] = useState();
-  const [classNumbers, setClassNumbers] = useState();
+  // const [sections, setSections] = useState<any[]>([]);
+  // const [classDates, setClassDates] = useState();
+  // const [classNumbers, setClassNumbers] = useState();
   const [loading, setLoading] = useState<boolean>(false);
 
   /// UI Components ...

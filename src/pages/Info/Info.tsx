@@ -8,13 +8,6 @@ interface Props {
 }
 
 const Info = ({ batch, section }: Props) => {
-  // const date = useState<Date>();
-  // const c_start = useState();
-  // const c_end = useState();
-  // const c_subject = useState();
-  // const c_code = useState();
-  // const c_room = useState();
-  // const c_teacher_initial = useState();
   const [classes, setClasses] = useState<any>([
     <ClasswisePlates />,
     <ClasswisePlates />,
