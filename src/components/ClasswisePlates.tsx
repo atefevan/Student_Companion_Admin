@@ -1,9 +1,13 @@
 import { useState } from "react";
 import C_TextField from "./atoms/C_TextField";
+import C_Button from "./atoms/C_Button";
+import { setData } from "../api/crud";
 
-interface Props {}
+interface Props {
+  props: {};
+}
 
-const ClasswisePlates = ({}: Props) => {
+const ClasswisePlates = ({ props }: Props) => {
   // const date = useState();
   // const c_start = useState<string>();
   // const c_end = useState<string>();
@@ -40,6 +44,7 @@ const ClasswisePlates = ({}: Props) => {
 
         <C_TextField
           id="classStart"
+          value={props?.classStart}
           type="text"
           label="class start"
           isError={false}
@@ -48,6 +53,7 @@ const ClasswisePlates = ({}: Props) => {
         />
         <C_TextField
           id="classEnd"
+          value={props?.classEnd}
           type="text"
           label="class end"
           isError={false}
@@ -56,6 +62,7 @@ const ClasswisePlates = ({}: Props) => {
         />
         <C_TextField
           id="subject"
+          value={props?.subject}
           type="text"
           label="class subject"
           isError={false}
@@ -64,6 +71,7 @@ const ClasswisePlates = ({}: Props) => {
         />
         <C_TextField
           id="classCode"
+          value={props?.classCode}
           type="text"
           label="class code"
           isError={false}
@@ -72,6 +80,7 @@ const ClasswisePlates = ({}: Props) => {
         />
         <C_TextField
           id="classRoom"
+          value={props?.classRoom}
           type="text"
           label="class room"
           isError={false}
@@ -80,11 +89,17 @@ const ClasswisePlates = ({}: Props) => {
         />
         <C_TextField
           id="teacherInitial"
+          value={props?.teacherInitial}
           type="text"
           label="class teacher initial"
           isError={false}
           style={{ margin: 1 }}
           onChange={handleFormDataInput}
+        />
+        <C_Button
+          label="Done"
+          variant="contained"
+          onSubmit={() => setData("cse", "55_A", formData)}
         />
       </div>
     </>

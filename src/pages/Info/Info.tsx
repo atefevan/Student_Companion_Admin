@@ -1,17 +1,29 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClasswisePlates from "../../components/ClasswisePlates";
 import C_Button from "../../components/atoms/C_Button";
+import { getData } from "../../api/crud";
 interface Props {
   batch: string;
   section: string;
 }
 
 const Info = ({ batch, section }: Props) => {
-  const [classes, setClasses] = useState<any>([
-    <ClasswisePlates />,
-    <ClasswisePlates />,
-  ]);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getData("departments", "cse", `${batch}_${section}`).then((res) => {
+      setData(res);
+    });
+  }, []);
+
+  console.log("FIRESTORE_DATA: ", data);
+  const [classes, setClasses] = useState<any>([]);
+
+  useEffect(() => {
+    data.map((item) => {
+      setClasses([...classes, <ClasswisePlates props={item} />]);
+    });
+  }, [data]);
   const handleAddClass = (newClass: any) => {
     setClasses([...classes, newClass]);
   };
