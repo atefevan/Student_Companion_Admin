@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Info from "../Info/Info";
 import Departments from "../Departments/Departments";
 import Batches from "../Batches/Batches";
-import { getData } from "../../api/crud";
+import { getData, getScheduleByDay } from "../../api/crud";
 import { useEffect } from "react";
 
 const Dashboard = () => {
@@ -17,6 +17,7 @@ const Dashboard = () => {
     getData("info", "cse", "data").then((res) => {
       setData(res);
     });
+    getScheduleByDay("55_A", "mon", "cse");
   }, []);
 
   console.log("FIRESTORE_DATA: ", data);

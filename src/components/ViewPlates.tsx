@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import C_Button from "./atoms/C_Button";
+import { deleteScheduleById } from "../api/crud";
 interface Props {
   leading: string;
 }
@@ -52,7 +53,12 @@ const ViewPlates = ({ leading }: Props) => {
           btn_text_size="50px"
           btn_text_color="black"
           width="100px"
-          onSubmit={() => console.log(`Clicked ${leading} Delete`)}
+          onSubmit={() => {
+            console.log("Pressed Delete");
+            deleteScheduleById("55_A", "cse", "ZzswZHDjeAhejMWTd0WL")
+              .then(() => console.log("SUCCESS"))
+              .catch((e) => console.error("DEL_ERR: ", e));
+          }}
         />
       </Box>
     </Box>

@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ClasswisePlates from "../../components/ClasswisePlates";
 import C_Button from "../../components/atoms/C_Button";
-import { getData } from "../../api/crud";
+import { deleteScheduleById, getData } from "../../api/crud";
 interface Props {
   batch: string;
   section: string;
@@ -95,7 +95,12 @@ const Info = ({ batch, section }: Props) => {
             selfAlign="end"
             btn_color="error"
             margin={2}
-            onSubmit={() => handleRemoveClass(classes[classes.length - 1])}
+            onSubmit={() => {
+              handleRemoveClass(classes[classes.length - 1]);
+              deleteScheduleById("55_A", "cse", "ZzswZHDjeAhejMWTd0WL")
+                .then(() => console.log("SUCCESS"))
+                .catch((e) => console.error("DEL_ERR: ", e));
+            }}
           />
           <C_Button
             label="Save"
