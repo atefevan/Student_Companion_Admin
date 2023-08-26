@@ -72,3 +72,19 @@ export const deleteScheduleById = async (
 
   await deleteDoc(docRef);
 };
+
+export const getDept = async (root:string) => {
+  const docRef = collection(db,root);
+  try {
+    await getDocs(docRef).then((snapshot) => {
+      // snapshot.docs.map((doc) => {
+      //   console.log(`Depts  : `,doc);
+      // });
+      snapshot.docs.map(e => console.log(e.data()))
+    });
+  } catch (error) {
+    console.log("ERR :: ",error)
+  }
+ 
+
+};

@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Info from "../Info/Info";
 import Departments from "../Departments/Departments";
 import Batches from "../Batches/Batches";
-import { getData, getScheduleByDay } from "../../api/crud";
+import { getData, getDept, getScheduleByDay } from "../../api/crud";
 import { useEffect } from "react";
 
 const Dashboard = () => {
@@ -14,16 +14,17 @@ const Dashboard = () => {
   // const batch_sections = [55:{},]
 
   useEffect(() => {
-    getData("info", "cse", "data").then((res) => {
-      setData(res);
+    // getData("info", "cse", "data").then((res) => {
+    //   setData(res);
+    // });
+    getDept("departments").then((res) => {
+      // console.log("LOG :: ", res);
     });
-    getScheduleByDay("55_A", "mon", "cse");
+    // getScheduleByDay("55_A", "mon", "cse");
   }, []);
 
-  console.log("FIRESTORE_DATA: ", data);
   return (
     <>
-      <Departments />
       <Box>
         <Typography variant="h4" fontWeight={600} sx={{ m: 4 }}>
           Department ➨ {dept}
