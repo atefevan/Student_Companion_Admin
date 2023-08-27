@@ -3,7 +3,12 @@ import { Box, Typography } from "@mui/material";
 import Info from "../Info/Info";
 import Departments from "../Departments/Departments";
 import Batches from "../Batches/Batches";
-import { getData, getDept, getScheduleByDay } from "../../api/crud";
+import {
+  getData,
+  getDept,
+  getScheduleByDay,
+  getDepartments,
+} from "../../api/crud";
 import { useEffect } from "react";
 
 const Dashboard = () => {
@@ -11,17 +16,22 @@ const Dashboard = () => {
   const batches = ["55", "51", "52", "53"];
   const sections = ["A", "B", "C"];
   const [data, setData] = React.useState([]);
+  let allClass = [];
   // const batch_sections = [55:{},]
 
   useEffect(() => {
     // getData("info", "cse", "data").then((res) => {
     //   setData(res);
     // });
-    getDept("departments").then((res) => {
-      // console.log("LOG :: ", res);
+    ["sat", "sun", "mon"].map((day) => {
+      getScheduleByDay("55_A", day, "cse").then((res) =>
+        //console.log("Res: ", res)
+        allClass.push({ [day]: res })
+      );
     });
-    // getScheduleByDay("55_A", "mon", "cse");
   }, []);
+
+  console.log(allClass);
 
   return (
     <>

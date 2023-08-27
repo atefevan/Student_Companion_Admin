@@ -30,6 +30,24 @@ export const getData = async (
   }
 };
 
+export const getDepartments = async (root: string) => {
+  const PATH = `${root}`;
+
+  let data: any = [];
+
+  try {
+    await getDocs(collection(db, PATH)).then((snapshot) => {
+      console.log("Snap: ", snapshot);
+      snapshot.docs.map((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+    });
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const setData = async (
   department: string,
   endpoint: string,
@@ -60,6 +78,8 @@ export const getScheduleByDay = async (
     response.push({ id: snapshot?.id, ...res });
   });
 
+  return response;
+
   console.log("DAY: ", response);
 };
 
@@ -73,18 +93,16 @@ export const deleteScheduleById = async (
   await deleteDoc(docRef);
 };
 
-export const getDept = async (root:string) => {
-  const docRef = collection(db,root);
+export const getDept = async (root: string) => {
+  const docRef = collection(db, root);
   try {
     await getDocs(docRef).then((snapshot) => {
       // snapshot.docs.map((doc) => {
       //   console.log(`Depts  : `,doc);
       // });
-      snapshot.docs.map(e => console.log(e.data()))
+      snapshot.docs.map((e) => console.log(e.data()));
     });
   } catch (error) {
-    console.log("ERR :: ",error)
+    console.log("ERR :: ", error);
   }
- 
-
 };
