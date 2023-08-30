@@ -16,7 +16,7 @@ const Info = ({ batch, section }: Props) => {
     });
   }, []);
 
-  console.log("FIRESTORE_DATA: ", data);
+  // console.log("FIRESTORE_DATA: ", data);
   const [classes, setClasses] = useState<any>([]);
 
   useEffect(() => {
