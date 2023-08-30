@@ -45,6 +45,7 @@ interface Props {
 
 const C_TextField = ({
   label,
+  width,
   id,
   variant,
   required = false,
@@ -78,6 +79,7 @@ const C_TextField = ({
         focused={focused}
         sx={{
           mb: 5,
+          width: width,
           ...style,
         }}
         InputProps={{

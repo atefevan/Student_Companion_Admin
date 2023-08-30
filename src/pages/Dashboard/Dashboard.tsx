@@ -24,7 +24,6 @@ const Dashboard = () => {
     });
     // ["sat", "sun", "mon"].map((day) => {
     //   getScheduleByDay("55_A", day, "cse").then((res) =>
-    //     //console.log("Res: ", res)
     //     allClass.push({ [day]: res })
     //   );
     // });

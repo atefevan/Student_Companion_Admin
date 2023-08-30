@@ -14,14 +14,15 @@ interface Props {
   width?: string | number;
   height?: string | number;
   minWidth?: string | number;
-  label?: string;
+  label: string;
   style?: SxProps<Theme>;
   id?: string;
-  items?: any[];
+  items: any[];
   defaultValue?: any;
   autoWidth?: boolean;
   isRequired?: boolean;
   isError?: boolean;
+  margin?: number;
   isDisabled?: boolean;
   errorHelperText?: string;
   size?: "small" | "medium";
@@ -43,6 +44,7 @@ const C_Select = ({
   style,
   size,
   variant,
+  margin,
   errorHelperText,
   isDisabled,
   onClick,
@@ -52,7 +54,15 @@ const C_Select = ({
     setItem(event.target.value as string);
   };
   return (
-    <Box sx={{ minWidth: minWidth, height: height, width: width, ...style }}>
+    <Box
+      sx={{
+        minWidth: minWidth,
+        height: height,
+        width: width,
+        m: margin,
+        ...style,
+      }}
+    >
       <FormControl
         fullWidth
         error={isError}

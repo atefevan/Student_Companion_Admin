@@ -2,33 +2,44 @@ import { useState } from "react";
 import C_TextField from "./atoms/C_TextField";
 import C_Button from "./atoms/C_Button";
 import { setData } from "../api/crud";
+import C_Select from "./atoms/C_Select";
 
 interface Props {
-  props: {};
+  props: {
+    day: string;
+    start: string;
+    end: string;
+    subject: string;
+    code: string;
+    room: string;
+    teacherInit: string;
+  };
 }
 
 const ClasswisePlates = ({ props }: Props) => {
-  // const date = useState();
-  // const c_start = useState<string>();
-  // const c_end = useState<string>();
-  // const c_subject = useState<string>();
-  // const c_code = useState<string>();
-  // const c_room = useState<string>();
-  // const c_teacher_initial = useState<string>();
-
+  const [newClasss, setNewClass] = useState<any>({
+    day: "",
+    start: "",
+    end: "",
+    subject: "",
+    code: "",
+    room: "",
+    teacherInit: "",
+  });
+  useState<string>("");
   const [formData, setFormData] = useState<{}>();
 
   const handleFormDataInput = (e: any) => {
     e.preventDefault();
 
-    let obj = {};
+    let obj: any = {};
     const key: string = e?.target?.id;
 
     obj[key] = e?.target?.value;
     setFormData({ ...formData, ...obj });
   };
 
-  //console.log(formData);
+  console.log(formData);
 
   return (
     <>
@@ -40,11 +51,15 @@ const ClasswisePlates = ({ props }: Props) => {
           margin: 3,
         }}
       >
-        <input type="date" style={{ margin: 5 }} name="date" />
+        <C_Select
+          label={"Day"}
+          items={["sat", "sun", "mon", "tue", "wed", "thr"]}
+          margin={1}
+        />
 
         <C_TextField
           id="classStart"
-          value={props?.classStart}
+          value={props?.start}
           type="text"
           label="class start"
           isError={false}
@@ -53,7 +68,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classEnd"
-          value={props?.classEnd}
+          value={props?.end}
           type="text"
           label="class end"
           isError={false}
@@ -71,7 +86,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classCode"
-          value={props?.classCode}
+          value={props?.code}
           type="text"
           label="class code"
           isError={false}
@@ -80,7 +95,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classRoom"
-          value={props?.classRoom}
+          value={props?.room}
           type="text"
           label="class room"
           isError={false}
@@ -89,7 +104,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="teacherInitial"
-          value={props?.teacherInitial}
+          value={props?.teacherInit}
           type="text"
           label="class teacher initial"
           isError={false}
