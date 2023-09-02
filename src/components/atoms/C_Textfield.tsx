@@ -17,13 +17,13 @@ interface Props {
   height?: string;
   width?: string;
   label?: string;
-  id: string;
+  id?: string;
   placeHolder?: string;
-  type: string;
+  type?: string;
   required?: boolean;
   helperText?: string;
   _disabled?: boolean;
-  isError: boolean;
+  isError?: boolean;
   fullwidth?: boolean;
   value?: string;
   variant?: "standard" | "outlined" | "filled";
@@ -39,7 +39,7 @@ interface Props {
   textColor?: string;
   hiddenLabel?: boolean;
   focused?: boolean;
-  fieldOnChange: (value: string) => void;
+  fieldOnChange?: (value: string) => void;
   onChange?: any;
 }
 

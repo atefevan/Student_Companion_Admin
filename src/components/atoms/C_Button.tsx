@@ -1,15 +1,15 @@
 import { Button, SxProps, Theme, Typography } from "@mui/material";
 
 interface BtnProps {
-  label: string;
+  label?: string;
   btn_text_size?: string;
   cornerRadius?: number;
   btn_text_color?: string;
   color?: string;
   width?: string;
   height?: string;
-  variant: "text" | "contained" | "outlined";
-  size: "small" | "medium" | "large";
+  variant?: "text" | "contained" | "outlined";
+  size?: "small" | "medium" | "large";
   marginLeft?: number | string;
   marginRight?: number | string;
   btn_color?:

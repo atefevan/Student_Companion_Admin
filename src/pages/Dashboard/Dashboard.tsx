@@ -11,9 +11,6 @@ import { useEffect } from "react";
 import ErrorPage from "../Error/Error";
 
 const Dashboard = () => {
-  let dept;
-  const batches = ["55", "51", "52", "53"];
-  const sections = ["A", "B", "C"];
   const [data, setData] = React.useState([]);
   let allClass: any;
   // const batch_sections = [55:{},]

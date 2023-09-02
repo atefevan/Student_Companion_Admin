@@ -3,6 +3,7 @@ import C_TextField from "./atoms/C_TextField";
 import C_Button from "./atoms/C_Button";
 import { setData } from "../api/crud";
 import C_Select from "./atoms/C_Select";
+import { Box, Typography } from "@mui/material";
 
 interface Props {
   props: {
@@ -16,10 +17,9 @@ interface Props {
   };
   batch: string;
   section: string;
-  department: string;
 }
 
-const ClasswisePlates = ({ props, batch, section, department }: Props) => {
+const ClasswisePlates = ({ props, batch, section }: Props) => {
   const [formData, setFormData] = useState<{}>();
 
   const handleFormDataInput = (e: any) => {
@@ -35,6 +35,8 @@ const ClasswisePlates = ({ props, batch, section, department }: Props) => {
   };
 
   console.log(formData);
+  console.log("BATCH :: ", batch);
+  console.log("SECTION :: ", section);
 
   return (
     <>
@@ -109,11 +111,27 @@ const ClasswisePlates = ({ props, batch, section, department }: Props) => {
           style={{ margin: 1 }}
           onChange={handleFormDataInput}
         />
-        <C_Button
-          label="Done"
-          variant="contained"
-          onSubmit={() => setData(department, `${batch}_${section}`, formData)}
-        />
+        <div
+          style={{
+            display: "flex",
+            margin: 7,
+            width: "25vw",
+          }}
+        >
+          <C_Button
+            label="Add"
+            btn_color="success"
+            variant="contained"
+            onSubmit={() => setData("cse", `${batch}_${section}`, formData)}
+          />
+          <Box sx={{ width: "5vw" }}></Box>
+          <C_Button
+            label="Remove"
+            btn_color="error"
+            variant="contained"
+            onSubmit={() => {}}
+          />
+        </div>
       </div>
     </>
   );

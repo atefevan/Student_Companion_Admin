@@ -9,7 +9,6 @@ import {
   SxProps,
   Theme,
 } from "@mui/material";
-import { useState } from "react";
 interface Props {
   width?: string | number;
   height?: string | number;
@@ -28,7 +27,7 @@ interface Props {
   size?: "small" | "medium";
   variant?: "filled" | "standard" | "outlined";
   onClick?: () => void;
-  onChange?: () => void;
+  onChange?: (e: any) => void;
   value?: string;
 }
 

@@ -17,7 +17,7 @@ const Info = ({ batch, section }: Props) => {
     });
   }, [setData]);
 
-  console.log("FIRESTORE_DATA: ", data);
+  // console.log("FIRESTORE_DATA: ", data);
   const [classes, setClasses] = useState<any>([]);
 
   // useEffect(() => {
@@ -76,14 +76,8 @@ const Info = ({ batch, section }: Props) => {
               m: 1,
             }}
           >
-            {/* {classes.map((classes: any) => classes)} */}
             {data.map((item) => (
-              <ClasswisePlates
-                props={item}
-                batch={batch}
-                section={section}
-                department={"cse"}
-              />
+              <ClasswisePlates props={item} batch={batch} section={section} />
             ))}
             {showAddClassForm && <ClasswisePlates />}
           </Box>
@@ -95,7 +89,7 @@ const Info = ({ batch, section }: Props) => {
           }}
         >
           <C_Button
-            label="Add"
+            label="Create New Class"
             variant="contained"
             btn_color="success"
             size="medium"
@@ -113,15 +107,6 @@ const Info = ({ batch, section }: Props) => {
             onSubmit={() => {
               handleRemoveClass();
             }}
-          />
-          <C_Button
-            label="Save"
-            variant="contained"
-            size="medium"
-            selfAlign="end"
-            btn_color="secondary"
-            margin={2}
-            onSubmit={() => console.log("Saved Clicked")}
           />
         </div>
 
