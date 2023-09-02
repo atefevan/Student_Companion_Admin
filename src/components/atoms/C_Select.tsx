@@ -28,6 +28,8 @@ interface Props {
   size?: "small" | "medium";
   variant?: "filled" | "standard" | "outlined";
   onClick?: () => void;
+  onChange?: () => void;
+  value?: string;
 }
 
 const C_Select = ({
@@ -48,11 +50,13 @@ const C_Select = ({
   errorHelperText,
   isDisabled,
   onClick,
+  onChange,
+  value,
 }: Props) => {
-  const [item, setItem] = useState<string>("");
-  const handleChange = (event: SelectChangeEvent) => {
-    setItem(event.target.value as string);
-  };
+  // const [item, setItem] = useState<string>(value);
+  // const handleChange = (event: SelectChangeEvent) => {
+  //   setItem(event.target.value as string);
+  // };
   return (
     <Box
       sx={{
@@ -75,11 +79,12 @@ const C_Select = ({
         <Select
           labelId={id}
           id="demo-simple-select"
-          value={item}
+          name={id}
+          value={value}
           label={label}
           defaultValue={defaultValue}
           autoWidth={autoWidth}
-          onChange={handleChange}
+          onChange={onChange}
           onClick={onClick}
         >
           {items?.map((e) => (

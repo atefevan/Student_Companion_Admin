@@ -10,25 +10,31 @@ interface Props {
 
 const Info = ({ batch, section }: Props) => {
   const [data, setData] = useState([]);
+  const [showAddClassForm, setShowAddClassForm] = useState<boolean>(false);
   useEffect(() => {
     getData("departments", "cse", `${batch}_${section}`).then((res) => {
       setData(res);
     });
-  }, []);
+  }, [setData]);
 
   console.log("FIRESTORE_DATA: ", data);
   const [classes, setClasses] = useState<any>([]);
 
-  useEffect(() => {
-    data.map((item) => {
-      setClasses([...classes, <ClasswisePlates props={item} />]);
-    });
-  }, [data]);
+  // useEffect(() => {
+  //   data.map((item) => {
+  //     setClasses([...classes, <ClasswisePlates props={item} />]);
+  //   });
+  // }, [data]);
   const handleAddClass = (newClass: any) => {
     setClasses([...classes, newClass]);
   };
-  const handleRemoveClass = (removeClass: any) => {
-    setClasses(classes.filter((i: any) => i != removeClass));
+  const handleRemoveClass = () => {
+    let temp = [...data];
+    const lastClass = temp.pop();
+    setData(temp);
+    deleteScheduleById(`${batch}_${section}`, "cse", `${lastClass?.id}`)
+      .then(() => console.log("SUCCESS"))
+      .catch((e) => console.error("DEL_ERR: ", e));
   };
   return (
     <>
@@ -70,7 +76,16 @@ const Info = ({ batch, section }: Props) => {
               m: 1,
             }}
           >
-            {classes.map((classes: any) => classes)}
+            {/* {classes.map((classes: any) => classes)} */}
+            {data.map((item) => (
+              <ClasswisePlates
+                props={item}
+                batch={batch}
+                section={section}
+                department={"cse"}
+              />
+            ))}
+            {showAddClassForm && <ClasswisePlates />}
           </Box>
         </div>
         <div
@@ -86,7 +101,7 @@ const Info = ({ batch, section }: Props) => {
             size="medium"
             margin={2}
             selfAlign="end"
-            onSubmit={() => handleAddClass(<ClasswisePlates />)}
+            onSubmit={() => setShowAddClassForm(true)}
           />
           <C_Button
             label="Remove"
@@ -96,10 +111,7 @@ const Info = ({ batch, section }: Props) => {
             btn_color="error"
             margin={2}
             onSubmit={() => {
-              handleRemoveClass(classes[classes.length - 1]);
-              deleteScheduleById("55_A", "cse", "ZzswZHDjeAhejMWTd0WL")
-                .then(() => console.log("SUCCESS"))
-                .catch((e) => console.error("DEL_ERR: ", e));
+              handleRemoveClass();
             }}
           />
           <C_Button

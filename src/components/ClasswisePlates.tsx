@@ -7,33 +7,28 @@ import C_Select from "./atoms/C_Select";
 interface Props {
   props: {
     day: string;
-    start: string;
-    end: string;
+    classStart: string;
+    classEnd: string;
     subject: string;
-    code: string;
-    room: string;
-    teacherInit: string;
+    classCode: string;
+    classRoom: string;
+    teacherInitial: string;
   };
+  batch: string;
+  section: string;
+  department: string;
 }
 
-const ClasswisePlates = ({ props }: Props) => {
-  const [newClasss, setNewClass] = useState<any>({
-    day: "",
-    start: "",
-    end: "",
-    subject: "",
-    code: "",
-    room: "",
-    teacherInit: "",
-  });
-  useState<string>("");
+const ClasswisePlates = ({ props, batch, section, department }: Props) => {
   const [formData, setFormData] = useState<{}>();
 
   const handleFormDataInput = (e: any) => {
     e.preventDefault();
 
+    console.log("EVENT", e);
+
     let obj: any = {};
-    const key: string = e?.target?.id;
+    const key: string = e?.target?.id ? e?.target?.id : e?.target?.name;
 
     obj[key] = e?.target?.value;
     setFormData({ ...formData, ...obj });
@@ -53,13 +48,16 @@ const ClasswisePlates = ({ props }: Props) => {
       >
         <C_Select
           label={"Day"}
-          items={["sat", "sun", "mon", "tue", "wed", "thr"]}
+          items={["sat", "sun", "mon", "tue", "wed", "thu"]}
           margin={1}
+          id="day"
+          value={props?.day}
+          onChange={handleFormDataInput}
         />
 
         <C_TextField
           id="classStart"
-          value={props?.start}
+          value={props?.classStart}
           type="text"
           label="class start"
           isError={false}
@@ -68,7 +66,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classEnd"
-          value={props?.end}
+          value={props?.classEnd}
           type="text"
           label="class end"
           isError={false}
@@ -86,7 +84,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classCode"
-          value={props?.code}
+          value={props?.classCode}
           type="text"
           label="class code"
           isError={false}
@@ -95,7 +93,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="classRoom"
-          value={props?.room}
+          value={props?.classRoom}
           type="text"
           label="class room"
           isError={false}
@@ -104,7 +102,7 @@ const ClasswisePlates = ({ props }: Props) => {
         />
         <C_TextField
           id="teacherInitial"
-          value={props?.teacherInit}
+          value={props?.teacherInitial}
           type="text"
           label="class teacher initial"
           isError={false}
@@ -114,7 +112,7 @@ const ClasswisePlates = ({ props }: Props) => {
         <C_Button
           label="Done"
           variant="contained"
-          onSubmit={() => setData("cse", "55_A", formData)}
+          onSubmit={() => setData(department, `${batch}_${section}`, formData)}
         />
       </div>
     </>

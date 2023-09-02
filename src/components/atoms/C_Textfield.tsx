@@ -74,6 +74,7 @@ const C_TextField = ({
   return (
     <>
       <TextField
+        name={id}
         fullWidth={fullwidth}
         hiddenLabel={hiddenLabel}
         focused={focused}
