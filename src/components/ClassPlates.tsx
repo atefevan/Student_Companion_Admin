@@ -1,7 +1,7 @@
 import { useState } from "react";
 import C_TextField from "./atoms/C_TextField";
 import C_Button from "./atoms/C_Button";
-import { deleteScheduleById, setData } from "../api/crud";
+import { deleteScheduleById, setData as insert } from "../api/crud";
 import C_Select from "./atoms/C_Select";
 import { Box, Typography } from "@mui/material";
 
@@ -18,13 +18,23 @@ interface Props {
   batch: string;
   section: string;
   index: number;
+  data: [];
+  setData: () => void;
 }
 
-const ClasswisePlates = ({ props, batch, section, index }: Props) => {
+const ClasswisePlates = ({
+  props,
+  batch,
+  section,
+  index,
+  data,
+  setData,
+}: Props) => {
   const [formData, setFormData] = useState<{}>();
 
-  const [dataa, setDataa] = useState([]); ///
-  const handleRemoveClass = () => {
+  console.log(formData);
+
+  const handleRemoveLastClass = () => {
     let temp = [...dataa];
 
     const lastClass: any = temp.pop();
@@ -33,10 +43,20 @@ const ClasswisePlates = ({ props, batch, section, index }: Props) => {
       .then(() => console.log("SUCCESS"))
       .catch((e) => console.error("DEL_ERR: ", e));
   };
+
+  const removeClassById = async () => {
+    let temp = [...data];
+    let fileredArray = temp.filter((item) => item.id !== props.id);
+    setData(fileredArray);
+    deleteScheduleById(`${batch}_${section}`, "cse", `${props?.id}`)
+      .then(() => {
+        console.log("SUCCESS");
+      })
+      .catch((e) => console.error("DEL_ERR: ", e));
+  };
+
   const handleFormDataInput = (e: any) => {
     e.preventDefault();
-
-    console.log("EVENT", e);
 
     let obj: any = {};
     const key: string = e?.target?.id ? e?.target?.id : e?.target?.name;
@@ -129,15 +149,15 @@ const ClasswisePlates = ({ props, batch, section, index }: Props) => {
             label="Add"
             btn_color="success"
             variant="contained"
-            onSubmit={() => setData("cse", `${batch}_${section}`, formData)}
+            onSubmit={() => insert("cse", `${batch}_${section}`, formData)}
           />
           <Box sx={{ width: "5vw" }}></Box>
           <C_Button
             label="Remove"
             btn_color="error"
             variant="contained"
-            // onSubmit={() =>  handleRemoveClass()}
-            onSubmit={() => console.log("INDEX :: ", index)}
+            onSubmit={() => removeClassById()}
+            //onSubmit={() => console.log("INDEX :: ", index)}
           />
         </div>
       </div>

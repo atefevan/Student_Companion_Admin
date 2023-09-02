@@ -9,6 +9,7 @@ interface Props {
 }
 
 const Info = ({ batch, section }: Props) => {
+  console.log(batch, section);
   const [data, setData] = useState([]);
   const [showAddClassForm, setShowAddClassForm] = useState<boolean>(false);
   useEffect(() => {
@@ -74,9 +75,13 @@ const Info = ({ batch, section }: Props) => {
                 batch={batch}
                 section={section}
                 index={index}
+                data={data}
+                setData={setData}
               />
             ))}
-            {showAddClassForm && <ClasswisePlates />}
+            {showAddClassForm && (
+              <ClasswisePlates batch={batch} section={section} />
+            )}
           </Box>
         </div>
         <div
