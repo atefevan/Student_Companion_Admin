@@ -1,7 +1,7 @@
 import { useState } from "react";
 import C_TextField from "./atoms/C_TextField";
 import C_Button from "./atoms/C_Button";
-import { setData } from "../api/crud";
+import { deleteScheduleById, setData } from "../api/crud";
 import C_Select from "./atoms/C_Select";
 import { Box, Typography } from "@mui/material";
 
@@ -17,11 +17,22 @@ interface Props {
   };
   batch: string;
   section: string;
+  index: number;
 }
 
-const ClasswisePlates = ({ props, batch, section }: Props) => {
+const ClasswisePlates = ({ props, batch, section, index }: Props) => {
   const [formData, setFormData] = useState<{}>();
 
+  const [dataa, setDataa] = useState([]); ///
+  const handleRemoveClass = () => {
+    let temp = [...dataa];
+
+    const lastClass: any = temp.pop();
+    setDataa(temp);
+    deleteScheduleById(`${batch}_${section}`, "cse", `${lastClass?.id}`)
+      .then(() => console.log("SUCCESS"))
+      .catch((e) => console.error("DEL_ERR: ", e));
+  };
   const handleFormDataInput = (e: any) => {
     e.preventDefault();
 
@@ -33,10 +44,6 @@ const ClasswisePlates = ({ props, batch, section }: Props) => {
     obj[key] = e?.target?.value;
     setFormData({ ...formData, ...obj });
   };
-
-  console.log(formData);
-  console.log("BATCH :: ", batch);
-  console.log("SECTION :: ", section);
 
   return (
     <>
@@ -129,7 +136,8 @@ const ClasswisePlates = ({ props, batch, section }: Props) => {
             label="Remove"
             btn_color="error"
             variant="contained"
-            onSubmit={() => {}}
+            // onSubmit={() =>  handleRemoveClass()}
+            onSubmit={() => console.log("INDEX :: ", index)}
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import ClasswisePlates from "../../components/ClasswisePlates";
+import ClasswisePlates from "../../components/ClassPlates";
 import C_Button from "../../components/atoms/C_Button";
 import { deleteScheduleById, getData } from "../../api/crud";
 interface Props {
@@ -27,14 +27,6 @@ const Info = ({ batch, section }: Props) => {
   // }, [data]);
   const handleAddClass = (newClass: any) => {
     setClasses([...classes, newClass]);
-  };
-  const handleRemoveClass = () => {
-    let temp = [...data];
-    const lastClass = temp.pop();
-    setData(temp);
-    deleteScheduleById(`${batch}_${section}`, "cse", `${lastClass?.id}`)
-      .then(() => console.log("SUCCESS"))
-      .catch((e) => console.error("DEL_ERR: ", e));
   };
   return (
     <>
@@ -76,8 +68,13 @@ const Info = ({ batch, section }: Props) => {
               m: 1,
             }}
           >
-            {data.map((item) => (
-              <ClasswisePlates props={item} batch={batch} section={section} />
+            {data.map((item, index) => (
+              <ClasswisePlates
+                props={item}
+                batch={batch}
+                section={section}
+                index={index}
+              />
             ))}
             {showAddClassForm && <ClasswisePlates />}
           </Box>
@@ -96,17 +93,6 @@ const Info = ({ batch, section }: Props) => {
             margin={2}
             selfAlign="end"
             onSubmit={() => setShowAddClassForm(true)}
-          />
-          <C_Button
-            label="Remove"
-            variant="contained"
-            size="medium"
-            selfAlign="end"
-            btn_color="error"
-            margin={2}
-            onSubmit={() => {
-              handleRemoveClass();
-            }}
           />
         </div>
 
