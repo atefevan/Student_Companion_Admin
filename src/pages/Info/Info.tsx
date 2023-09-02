@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ClasswisePlates from "../../components/ClassPlates";
 import C_Button from "../../components/atoms/C_Button";
-import { deleteScheduleById, getData } from "../../api/crud";
+import { getData } from "../../api/crud";
 interface Props {
   batch: string;
   section: string;
@@ -17,18 +17,7 @@ const Info = ({ batch, section }: Props) => {
       setData(res);
     });
   }, [setData]);
-
-  // console.log("FIRESTORE_DATA: ", data);
   const [classes, setClasses] = useState<any>([]);
-
-  // useEffect(() => {
-  //   data.map((item) => {
-  //     setClasses([...classes, <ClasswisePlates props={item} />]);
-  //   });
-  // }, [data]);
-  const handleAddClass = (newClass: any) => {
-    setClasses([...classes, newClass]);
-  };
   return (
     <>
       <Box
@@ -37,9 +26,9 @@ const Info = ({ batch, section }: Props) => {
           right: 0,
           top: 0,
           bottom: 0,
-          height: "59vh",
+          height: "1%",
           alignSelf: "end",
-          mt: 20,
+          mt: 5,
         }}
       >
         <div style={{ display: "flex" }}>

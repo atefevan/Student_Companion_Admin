@@ -4,12 +4,16 @@ const ErrorPage = () => {
   return (
     <div>
       <Typography
-        variant="h6"
+        variant="h3"
         fontFamily={["Arial"]}
         fontWeight={600}
         color={"black"}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
-        Provide Some Data
+        Loading !!!!🚀🚀🚀 <br></br>Keep Paitience
       </Typography>
     </div>
   );

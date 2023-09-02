@@ -1,29 +1,17 @@
 import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import Info from "../Info/Info";
-import {
-  getData,
-  getDept,
-  getScheduleByDay,
-  getDepartments,
-} from "../../api/crud";
+import { getData } from "../../api/crud";
 import { useEffect } from "react";
 import ErrorPage from "../Error/Error";
 
 const Dashboard = () => {
   const [data, setData] = React.useState([]);
-  let allClass: any;
-  // const batch_sections = [55:{},]
 
   useEffect(() => {
     getData("info", "cse", "data").then((res) => {
       setData(res);
     });
-    // ["sat", "sun", "mon"].map((day) => {
-    //   getScheduleByDay("55_A", day, "cse").then((res) =>
-    //     allClass.push({ [day]: res })
-    //   );
-    // });
   }, []);
 
   return (

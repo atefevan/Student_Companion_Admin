@@ -3,7 +3,7 @@ import C_TextField from "./atoms/C_TextField";
 import C_Button from "./atoms/C_Button";
 import { deleteScheduleById, setData as insert } from "../api/crud";
 import C_Select from "./atoms/C_Select";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface Props {
   props: {
@@ -33,16 +33,6 @@ const ClasswisePlates = ({
   const [formData, setFormData] = useState<{}>();
 
   console.log(formData);
-
-  const handleRemoveLastClass = () => {
-    let temp = [...dataa];
-
-    const lastClass: any = temp.pop();
-    setDataa(temp);
-    deleteScheduleById(`${batch}_${section}`, "cse", `${lastClass?.id}`)
-      .then(() => console.log("SUCCESS"))
-      .catch((e) => console.error("DEL_ERR: ", e));
-  };
 
   const removeClassById = async () => {
     let temp = [...data];
@@ -142,7 +132,7 @@ const ClasswisePlates = ({
           style={{
             display: "flex",
             margin: 7,
-            width: "25vw",
+            width: "20vw",
           }}
         >
           <C_Button
